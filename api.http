@@ -1,0 +1,36 @@
+@HOST = localhost
+@PORT = 1234
+
+GET http://{{HOST}}:{{PORT}}/
+
+# --- Rutas API --- 
+
+### Obtener infomación de todos los poemas
+GET http://{{HOST}}:{{PORT}}/poems
+
+### Obtener infomación un poema por id
+GET http://{{HOST}}:{{PORT}}/poems/1
+
+### Obtener infomación de poemas filtrados por writer
+GET http://{{HOST}}:{{PORT}}/poems?writer=Antonio%20Machado
+
+### Crear un poema
+POST http://{{HOST}}:{{PORT}}/poems
+Content-Type: application/json
+
+{
+    "poem": "caminante no hay camino",
+    "writer": "Antonio Machado",
+    "year_publication": 1912
+}
+
+### Actualizar un poema
+PATCH http://{{HOST}}:{{PORT}}/poems/b64e67fe-3f34-45de-a36c-0ede5940392c
+Content-Type: application/json
+
+{
+    "year_publication": 1812
+}
+
+### Eliminar un poema
+DELETE http://{{HOST}}:{{PORT}}/poems/eea570e9-d9b1-4e9d-8e05-2df15f5d7201

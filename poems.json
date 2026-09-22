@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "poem": "Asesinado por el cielo,\nentre las formas que van hacia la sierpe\ny las formas que buscan el cristal,\ndejaré caer mis cabellos.",
+    "writer": "Federico García Lorca",
+    "year_publication": 1940
+  },
+  {
+    "id": 2,
+    "poem": "Anoche cuando dormía\nsoñé, ¡bendita ilusión!,\nque una fontana fluía\ndentro de mi corazón.",
+    "writer": "Antonio Machado",
+    "year_publication": 1907
+  },
+  {
+    "id": 3,
+    "poem": "Umbrío por la pena, casi bruno,\nporque la pena tizna cuando estalla,\ndonde yo no me hallo no se halla\nhombre más apenado que ninguno.",
+    "writer": "Miguel Hernández",
+    "year_publication": 1936
+  },
+  {
+    "id": "4ce4098e-5c8e-49d7-bd58-0e375dc79ded",
+    "poem": "caminante no hay camino",
+    "writer": "Antonio Machado",
+    "year_publication": 1912
+  }
+]

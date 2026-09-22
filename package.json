@@ -1,0 +1,30 @@
+{
+  "name": "api-node",
+  "version": "0.1.0",
+  "description": "API escrita en js usando node",
+  "keywords": [
+    "node",
+    "nodejs",
+    "api"
+  ],
+  "homepage": "https://github.com/Guille-Lavado/api-node#readme",
+  "bugs": {
+    "url": "https://github.com/Guille-Lavado/api-node/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guille-Lavado/api-node.git"
+  },
+  "license": "MIT",
+  "author": "Guille Lavado",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "5.2.1",
+    "zod": "4.6.5"
+  }
+}
