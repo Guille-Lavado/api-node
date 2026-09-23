@@ -19,48 +19,55 @@ export class PoemModel {
     }
 
     static async create (data) {
-        const newPoem = {
-            id: crypto.randomUUID(), // uuid v4
-            ...data
-        };
+        try {
+            const newPoem = {
+                id: crypto.randomUUID(), // uuid v4
+                ...data
+            };
 
-        // Modificar el array en memoria
-        poems.push(newPoem);
+            // Modificar el array en memoria
+            poems.push(newPoem);
 
-        // Guardar el array actualizado en el archivo físico
-        fs.writeFileSync(url_poems, JSON.stringify(poems, null, 2));
-        
-        return newPoem;
+            // Guardar el array actualizado en el archivo físico
+            fs.writeFileSync(url_poems, JSON.stringify(poems, null, 2));
+
+            return { ok: true, data: newPoem };
+        } catch (error) {
+            return { ok: false, error };
+        }
     }
 
     static async update ({ id, data }) {
-        const poemIndex = poems.findIndex(poem => poem.id === id);
+        try {
+            const poemIndex = poems.findIndex(poem => poem.id === id);
+            if (poemIndex === -1) return { ok: true, data: false };
 
-        if (poemIndex === -1) return { ok: false };
+            const updatePoem = {
+                ...poems[poemIndex],
+                ...data
+            };
 
-        console.log(data);
+            poems[poemIndex] = updatePoem;
+            fs.writeFileSync(url_poems, JSON.stringify(poems, null, 2));
 
-        const updatePoem = {
-            ...poems[poemIndex],
-            ...data
-        };
+            return { ok: true, data: updatePoem };
+        } catch (error) {
+            return { ok: false, error };
+        }
 
-        poems[poemIndex] = updatePoem;
-
-        fs.writeFileSync(url_poems, JSON.stringify(poems, null, 2));
-
-        return { poem: updatePoem, ok: true };
     }
 
     static async delete ({ id }) {
-        const poemIndex = poems.findIndex(poem => poem.id === id);
+        try {
+            const poemIndex = poems.findIndex(poem => poem.id === id);
+            if (poemIndex === -1) return { ok: true, data: false };
 
-        if (poemIndex === -1) return false;
+            poems.splice(poemIndex, 1);
+            fs.writeFileSync(url_poems, JSON.stringify(poems, null, 2));
 
-        poems.splice(poemIndex, 1);
-
-        fs.writeFileSync(url_poems, JSON.stringify(poems, null, 2));
-
-        return true;
+            return { ok: true, data: true };
+        } catch (error) {
+            return { ok: false, error };
+        }
     }
 }

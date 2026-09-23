@@ -54,29 +54,29 @@ export class PoemModel {
         try {
             const newPoem = new poemModel(data);
             await newPoem.save();
-            return newPoem;
+            return { ok: true, data: newPoem };
         } catch (error) {
-            throw new Error(error);
+            return { ok: false, error };
         }
     }
 
     static async update ({ id, data }) {
         try {
             const updatedPoem = await poemModel.findByIdAndUpdate(id, data, { new: true });
-            if (!updatedPoem) return { ok: false };
-            return { poem: updatedPoem, ok: true };
+            if (!updatedPoem) return { ok: true, data: false };
+            return { ok: true, data: updatedPoem };
         } catch (error) {
-            throw new Error(error);
+            return { ok: false, error };
         }
     }
 
     static async delete ({ id }) {
         try {
             const result = await poemModel.findByIdAndDelete(id);
-            if (!result) return false;
-            return true;
+            if (!result) return { ok: true, data: false };
+            return { ok: true, data: true };
         } catch (error) {
-            throw new Error(error);
+            return { ok: false, error };
         }
     }
 }
