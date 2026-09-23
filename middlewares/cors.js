@@ -1,7 +1,8 @@
 import { request, response } from "express";
 
 const ACCEPTED_ORIGINS = [
-    'http://localhost:8080'
+    'http://localhost:8080',
+    'http://localhost:3000'
 ];
 
 // Crear cabeceras para evitar problemas de CORS
