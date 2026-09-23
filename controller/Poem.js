@@ -1,5 +1,7 @@
-import { PoemModel } from "../models/Poem.js";
+import { PoemModel } from "../models/poem-mongodb.js";
 import { validatePoem, validatePartialPoem } from '../schema/poems.js';
+
+new PoemModel();
 
 export class PoemController {
     static async getAll (req, res) {

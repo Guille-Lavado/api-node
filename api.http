@@ -9,7 +9,7 @@ GET http://{{HOST}}:{{PORT}}/
 GET http://{{HOST}}:{{PORT}}/poems
 
 ### Obtener infomación un poema por id
-GET http://{{HOST}}:{{PORT}}/poems/f4758805-73a5-4353-b56e-a5b7c9aad201
+GET http://{{HOST}}:{{PORT}}/poems/cfd951ee-4bfe-40be-80dd-0ff5f69800a5
 
 ### Obtener infomación de poemas filtrados por writer
 GET http://{{HOST}}:{{PORT}}/poems?writer=Antonio%20Machado
@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ### Actualizar un poema
-PATCH http://{{HOST}}:{{PORT}}/poems/b842b093-7fe5-4a25-84c7-1a74f65643d9
+PATCH http://{{HOST}}:{{PORT}}/poems/cfd951ee-4bfe-40be-80dd-0ff5f69800a5
 Content-Type: application/json
 
 {
@@ -33,4 +33,4 @@ Content-Type: application/json
 }
 
 ### Eliminar un poema
-DELETE http://{{HOST}}:{{PORT}}/poems/8b0fd9b0-4f2e-4e6c-890b-f947c70675ec
+DELETE http://{{HOST}}:{{PORT}}/poems/cfd951ee-4bfe-40be-80dd-0ff5f69800a5
