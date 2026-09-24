@@ -20,6 +20,12 @@ const poemSchemaDB = mongoose.Schema({
     }
 });
 
+poemSchemaDB.methods.toJSON = function () {
+    const { __v, _id, ...poem } = this.toObject();
+    poem.id = _id;
+    return poem;
+};
+
 const poemModel = mongoose.model('Poem', poemSchemaDB);
 
 export class PoemModel {

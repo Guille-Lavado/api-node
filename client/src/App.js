@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { FormCreate } from './components/FormCreate.jsx';
+import { FormSearch } from './components/FormSearch.jsx';
+import { Poem } from './components/Poem.jsx';
 
 function App() {
   const [poems, setPoems] = useState([]);
+  const [filteredPoems, setFilteredPoems] = useState([]);
   const [cargando, setCargando] = useState(true);
   
   useEffect(() => {
@@ -15,29 +19,24 @@ function App() {
       .catch((err) => console.error(err));
   }, []);
 
-  const deletePoem = (e) => {
-    const article = e.target.closest('article')
-    const id = article.dataset.id;
-
-    fetch(`http://localhost:1234/poems/${id}`, {
-      method: 'DELETE'
-    })
-      .then(res => { if (res.ok) article.remove() });
-  };
+  useEffect(() => {}, [filteredPoems])
 
   if (cargando) return <p>Cargando datos...</p>;
 
   return (
-    <>
-      {poems.map(poem => (
-        <article key={poem.id} data-id={poem.id}>
-          <h2>{poem.writer}</h2>
-          <p style={{ whiteSpace: 'pre-line' }}>{poem.poem}</p>
-          <small>-- {poem.year_publication} --</small>
-          <button className="deleteBtn" onClick={deletePoem} >Eliminar</button>
-        </article>
-      ))}
-    </>
+    <main>
+      <section id="poemList">
+        { filteredPoems.length === 0
+          ? poems.map(poem => <Poem {...poem} />)
+          : filteredPoems.map(poem => <Poem {...poem} />) }
+      </section>
+      <section id='formSection'>
+        <h2>Crear Nuevo Poema</h2>
+        <FormCreate handleNewPoem={(poem) => setPoems([...poems, poem])} />
+        <h2>Buscar Poemas</h2>
+        <FormSearch handleSearchPoem={setFilteredPoems}/>
+      </section>
+    </main>
   );
 }
 

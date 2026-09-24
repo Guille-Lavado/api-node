@@ -13,6 +13,8 @@ export const corsMiddleware = (req=request, res=response, next) => {
         res.header('Access-Control-Allow-Origin', origin || '*');
         // Permitir que métodos se pueden usar
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+        // Permitir la cabecera Content-Type
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     }
 
     // Responder inmediatamente a las peticiones Preflight (OPTIONS)

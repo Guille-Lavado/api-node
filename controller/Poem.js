@@ -1,4 +1,4 @@
-import { PoemModel } from "../models/poem-local.js";
+import { PoemModel } from "../models/poem-mongodb.js";
 import { validatePoem, validatePartialPoem } from '../schema/poems.js';
 
 new PoemModel();
@@ -21,6 +21,7 @@ export class PoemController {
         const result = validatePoem(req.body);
         
         if (result.error) {
+            console.log(result.error);
             return res.status(400).json({
                 error: JSON.parse(result.error.message)
             });
@@ -30,7 +31,7 @@ export class PoemController {
         
         if (!newPoem.ok) {
             console.log(newPoem.error);
-            res.status(500).json({ message: 'Error to save poem' });
+            return res.status(500).json({ message: 'Error to save poem' });
         } 
 
         res.status(201).json(newPoem.data);
@@ -40,6 +41,7 @@ export class PoemController {
         const result = validatePartialPoem(req.body);
         
         if (result.error) {
+            console.log(result.error);
             return res.status(400).json({
                 error: JSON.parse(result.error.message)
             });
@@ -50,14 +52,18 @@ export class PoemController {
 
         if (!updatePoem.ok) {
             console.log(updatePoem.error);
-            res.status(500).json({ message: 'Error to save poem' });
+            return res.status(500).json({ message: 'Error to save poem' });
         }
 
         if (!updatePoem.data) {
             return res.status(404).json({ message: 'Poem not Found' });
         }
 
-        res.status(201).json(updatePoem.data);
+        res.status(201).json({
+            poem: updatePoem.data.poem,
+            writer: updatePoem.data.writer,
+            year_publication: updatePoem.data.year_publication,
+        });
     }
 
     static async delete (req, res) {
@@ -66,7 +72,7 @@ export class PoemController {
 
         if (!poemIndex.ok) {
             console.log(poemIndex.error);
-            res.status(500).json({ message: 'Error to save poem' });
+            return res.status(500).json({ message: 'Error to save poem' });
         }
 
         if (!poemIndex.data) {

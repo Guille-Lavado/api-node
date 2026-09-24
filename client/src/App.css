@@ -1,0 +1,42 @@
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 8px;
+}
+
+main>section {
+    margin: 8px;
+}
+
+#poemList {
+    margin: auto;
+}
+
+#poemList p,
+#poemList h2 {
+    text-align: center;
+    white-space: pre-line;
+}
+
+#formSection {
+    padding: 20px;
+    padding-top: 0;
+}
+
+#formSection>h2 {
+    margin-top: 12px;
+}
+
+.poemForm {
+    max-width: 300px;
+    margin-bottom: 36px;
+}
+
+.poemForm>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.poemForm textarea {
+    height: 120px;
+}
